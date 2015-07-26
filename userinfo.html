@@ -1,0 +1,86 @@
+<!Doctype html><html>
+	<head>
+		<title>Guest Info</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <script language="JavaScript" src="http://www.torzap.com.mx/geo.js.php" type="text/javascript"></script>
+        <script type="text/javascript">
+        var nav = navigator.userAgent.toLowerCase();
+        var val,ciudad_estado,estado_pais,ciudad_pais;
+        function getLocation(val){
+            estado_pais = geoplugin_region() + ", " + geoplugin_countryName();
+            switch(val){
+                case "latitud": return geoplugin_latitude(); break;
+                case "longitud": return geoplugin_longitude(); break;
+                case "ciudad": return geoplugin_city(); break;
+                case "estado": return geoplugin_region(); break;
+                case "pais": return geoplugin_countryName(); break;
+                case "pais_codigo": return geoplugin_countryCode(); break;
+                case "region_codigo": return geoplugin_regionCode(); break;
+                case "ciudad_estado": return geoplugin_countryState(); break;
+                case "estado_pais": return geoplugin_stateCountry(); break;
+                case "ciudad_pais": default: return geoplugin_cityCountry(); break;
+            }
+        }
+        function getSO(){
+            var so;
+            if(nav.indexOf("linux") != -1){
+                so = "Linux";
+            } else if(nav.indexOf("ubuntu") != -1){
+                so = "Ubuntu";
+            } else if(nav.indexOf("mac") != -1){
+                so = "Mac";
+            } else if(nav.indexOf("windows") != -1){
+                so = "Windows";
+            } else if(nav.indexOf("android") != -1){
+                so = "Android";
+            } else if(nav.indexOf("ios") != -1){
+                so = "iOS";
+            } else if(nav.indexOf("mobile") != -1 && nav.indexOf("gecko") != -1){
+                so = "Firefox OS";
+            } else {
+                so = "Desconocido";
+            }
+            return so;
+        }
+        function getBrowser(){
+            var browser;
+            if(nav.indexOf("msie") != -1){
+                browser = "Internet Explorer";
+            } else if(nav.indexOf("edge") != -1){
+                browser = "Microsoft Edge";
+            } else if(nav.indexOf("spartan") != -1){
+                browser = "Microsoft Spartan";
+            } else if(nav.indexOf("firefox") != -1){
+                browser = "Mozilla Firefox";
+            } else if(nav.indexOf("chromium") != -1){
+                browser = "Chromium";
+            } else if(nav.indexOf("chrome") != -1){
+                browser = "Chrome";
+            } else if(nav.indexOf("safari") != -1){
+                browser = "Safari";
+            } else if(nav.indexOf("opera mini") != -1){
+                browser = "Opera Mini";
+            } else if(nav.indexOf("opera") != -1){
+                browser = "Opera";
+            } else if(nav.indexOf("netscape") != -1){
+                browser = "Netscape";
+            } else {
+                browser = "Desconocido";
+            }
+            return browser;
+        }
+        window.onload = function() {
+            document.getElementById('location').innerHTML = "<b>Ubicaci&oacute;n:</b> " + getLocation('estado_pais');
+            document.getElementById('so').innerHTML = "<b>SO:</b> " + getSO();
+            document.getElementById('browser').innerHTML = "<b>Navegador:</b> " + getBrowser();
+            //document.getElementById('userAgent').innerHTML = nav;
+        }
+        </script>
+    </head>
+	</body>
+		<div id="location"></div>
+		<div id="browser"></div>
+		<div id="so"></div>
+		<div id="userAgent"></div>
+	</body>
+</html>
