@@ -27,18 +27,18 @@ function getSO(){
 	if (preg_match('/linux/i', $agente)) {
 		 $so = "Linux";
 	} elseif (preg_match('/ubuntu/i', $agente)) {
-    	$so = "Ubuntu";
+    		$so = "Ubuntu";
 	} elseif (preg_match('/macintosh|mac os x/i', $agente)) {
 		 $so = "Mac";
 	} elseif (preg_match('/windows|win32/i', $agente)) {
 		 $so = "Windows";
 	} elseif (preg_match('/android/i', $agente)) {
-    	 $so = "Android";
+    		$so = "Android";
 	} elseif (preg_match('/ios/i', $agente)) {
-         $so = "iOS";
+        	$so = "iOS";
 	} elseif (preg_match('/Mobile/i', $agente) && preg_match('/Gecko/i', $agente)){
-         $so = "Firefox OS";
-    } else {
+        	$so = "Firefox OS";
+	} else {
 		$so = "Other";
 	}
 	return $so;
@@ -49,16 +49,16 @@ function getBrowser(){
 	if(preg_match('/MSIE/i',$agente) && !preg_match('/Opera/i',$agente)){
 		$navegador = 'Internet Explorer';
 	}
-    elseif(preg_match('/Edge/i',$agente)){
-    	$navegador = 'Microsoft Edge';
+	elseif(preg_match('/Edge/i',$agente)){
+    		$navegador = 'Microsoft Edge';
 	}
-    elseif(preg_match('/Spartan/i',$agente)){
-        $navegador = 'Microsoft Spartan';
+	elseif(preg_match('/Spartan/i',$agente)){
+        	$navegador = 'Microsoft Spartan';
 	}
 	elseif(preg_match('/Firefox/i',$agente)){
 		$navegador = 'Mozilla Firefox';
 	}
-    elseif(preg_match('/Chromium/i',$agente)){
+	elseif(preg_match('/Chromium/i',$agente)){
 		$navegador = "Chromium";
 	}
 	elseif(preg_match('/Chrome/i',$agente)){
@@ -67,7 +67,7 @@ function getBrowser(){
 	elseif(preg_match('/Safari/i',$agente)){
 		$navegador = 'Safari';
 	}
-    elseif(preg_match('/Opera Mini/i',$agente)){
+	elseif(preg_match('/Opera Mini/i',$agente)){
     	$navegador = 'Opera Mini';
 	}
 	elseif(preg_match('/Opera/i',$agente)){
