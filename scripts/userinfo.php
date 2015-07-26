@@ -9,6 +9,7 @@ echo('<body>');
 function getLocation($var){
     $meta = unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR']));
     switch($var){
+        case "ip": return $meta['geoplugin_request']; break;
         case "latitud": return $meta['geoplugin_latitude']; break;
         case "longitud": return $meta['geoplugin_longitude']; break;
         case "ciudad": return $meta['geoplugin_city']; break;
@@ -81,7 +82,7 @@ function getBrowser(){
     return $navegador;
 }
 
-
+echo("<b>IP:</b> ".getLocation('ip')."<br>");
 echo("<b>Ubicaci&oacute;n</b>: ".getLocation('ciudad_pais')."<br>");
 echo("<b>Navegador:</b> ".getBrowser()."<br>");
 echo("<b>SO:</b> ".getSO()."<br>");
