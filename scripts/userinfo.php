@@ -39,14 +39,14 @@ function getSO(){
 	} elseif (preg_match('/Mobile/i', $agente) && preg_match('/Gecko/i', $agente)){
         	$so = "Firefox OS";
 	} else {
-		$so = "Other";
+		$so = "Desconocido";
 	}
 	return $so;
 }
 
 function getBrowser(){
 	$agente = $_SERVER['HTTP_USER_AGENT'];
-	if(preg_match('/MSIE/i',$agente) && !preg_match('/Opera/i',$agente)){
+	if(preg_match('/MSIE/i',$agente) || preg_match('/.net/i',$agente) || preg_match('/trident/i',$agente) && !preg_match('/Opera/i',$agente)){
 		$navegador = 'Internet Explorer';
 	}
 	elseif(preg_match('/Edge/i',$agente)){
@@ -76,7 +76,7 @@ function getBrowser(){
 	elseif(preg_match('/Netscape/i',$agente)){
 		$navegador = 'Netscape';
 	} else {
-    	$navegador = "Other";
+    	$navegador = "Desconocido";
 	}
     return $navegador;
 }
