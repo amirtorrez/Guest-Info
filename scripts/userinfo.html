@@ -9,6 +9,7 @@
         	function getLocation(val){
         		estado_pais = geoplugin_region() + ", " + geoplugin_countryName();
         		switch(val){
+        			case "ip": return geoplugin_request(); break;
         			case "latitud": return geoplugin_latitude(); break;
         			case "longitud": return geoplugin_longitude(); break;
         			case "ciudad": return geoplugin_city(); break;
@@ -70,6 +71,7 @@
         		return browser;
         	}
         	window.onload = function() {
+        		document.getElementById('location').innerHTML = "<b>IP:</b> " + getLocation('ip');
         		document.getElementById('location').innerHTML = "<b>Ubicaci&oacute;n:</b> " + getLocation('estado_pais');
         		document.getElementById('so').innerHTML = "<b>SO:</b> " + getSO();
         		document.getElementById('browser').innerHTML = "<b>Navegador:</b> " + getBrowser();
@@ -78,6 +80,7 @@
         	</script>
 	</head>
 	</body>
+		<div id="ip"></div>
 		<div id="location"></div>
 		<div id="browser"></div>
 		<div id="so"></div>
