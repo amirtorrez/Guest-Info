@@ -20,8 +20,8 @@
         			case "ciudad_estado": return geoplugin_countryState(); break;
         			case "estado_pais": return geoplugin_stateCountry(); break;
         			case "ciudad_pais": default: return geoplugin_cityCountry(); break;
-        		}
-        	}
+        		};
+        	};
         	function getSO(){
         		var so;
         		if(nav.indexOf("linux") != -1){
@@ -40,9 +40,9 @@
         			so = "Firefox OS";
         		} else {
         			so = "Desconocido";
-        		}
+        		};
         		return so;
-        	}
+        	};
         	function getBrowser(){
         		var browser;
         		if(nav.indexOf("msie") != -1 || nav.indexOf(".net") != -1 || nav.indexOf("trident") != -1){
@@ -65,18 +65,20 @@
         			browser = "Opera";
 			} else if(nav.indexOf("netscape") != -1){
         			browser = "Netscape";
-        		} else {
+        		} else if(nav.indexOf("UCBrowser") != -1){
+        			browser = "UC Browser";
+        		}  else {
         			browser = "Desconocido";
-        		}
+        		};
         		return browser;
-        	}
-        	window.onload = function() {
+        	};
+        	(function(window) {
         		document.getElementById('ip').innerHTML = "<b>IP:</b> " + getLocation('ip');
         		document.getElementById('location').innerHTML = "<b>Ubicaci&oacute;n:</b> " + getLocation('estado_pais');
         		document.getElementById('so').innerHTML = "<b>SO:</b> " + getSO();
         		document.getElementById('browser').innerHTML = "<b>Navegador:</b> " + getBrowser();
-        		//document.getElementById('userAgent').innerHTML = nav;
-        	}
+        		document.getElementById('userAgent').innerHTML = nav;
+        	})(this);
         	</script>
 	</head>
 	</body>
