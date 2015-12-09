@@ -20,13 +20,13 @@ function getLocation($var){
         case "ciudad_estado": $ciudad_estado = $meta['geoplugin_city'].', '.$meta['geoplugin_region']; return $ciudad_estado; break;
         case "estado_pais": $estado_pais = $meta['geoplugin_region'].', '.$meta['geoplugin_countryName']; return $estado_pais; break;
         case "ciudad_pais": default: $ciudad_pais = $meta['geoplugin_city'].', '.$meta['geoplugin_countryName']; return $ciudad_pais; break;
-    }
-}
+    };
+};
 
 function getSO(){
 	$agente = $_SERVER['HTTP_USER_AGENT'];
 	if (preg_match('/linux/i', $agente)) {
-		 $so = "Linux";
+		$so = "Linux";
 	} elseif (preg_match('/ubuntu/i', $agente)) {
     		$so = "Ubuntu";
 	} elseif (preg_match('/macintosh|mac os x/i', $agente)) {
@@ -41,51 +41,58 @@ function getSO(){
         	$so = "Firefox OS";
 	} else {
 		$so = "Desconocido";
-	}
+	};
 	return $so;
-}
+};
+
+function getArquitecture(){
+	$agente = $_SERVER['HTTP_USER_AGENT'];
+	if(preg_match('/x16/i',$agente)){
+    		$arquitecture = 'x16';
+	} elseif(preg_match('/x32/i',$agente)){
+    		$arquitecture = 'x32';
+	} elseif(preg_match('/x64/i',$agente)){
+    		$arquitecture = 'x64';
+	} elseif(preg_match('/x128/i',$agente)){
+    		$arquitecture = 'x128';
+	};
+    return $arquitecture;
+};
 
 function getBrowser(){
 	$agente = $_SERVER['HTTP_USER_AGENT'];
 	if(preg_match('/MSIE/i',$agente) || preg_match('/.net/i',$agente) || preg_match('/trident/i',$agente) && !preg_match('/Opera/i',$agente)){
 		$navegador = 'Internet Explorer';
-	}
-	elseif(preg_match('/Edge/i',$agente)){
+	} elseif(preg_match('/Edge/i',$agente)){
     		$navegador = 'Microsoft Edge';
-	}
-	elseif(preg_match('/Spartan/i',$agente)){
+	} elseif(preg_match('/Spartan/i',$agente)){
         	$navegador = 'Microsoft Spartan';
-	}
-	elseif(preg_match('/Firefox/i',$agente)){
+	} elseif(preg_match('/Firefox/i',$agente)){
 		$navegador = 'Mozilla Firefox';
-	}
-	elseif(preg_match('/Chromium/i',$agente)){
+	} elseif(preg_match('/Chromium/i',$agente)){
 		$navegador = "Chromium";
-	}
-	elseif(preg_match('/Chrome/i',$agente)){
+	} elseif(preg_match('/Chrome/i',$agente)){
 		$navegador = "Chrome";
-	}
-	elseif(preg_match('/Safari/i',$agente)){
+	} elseif(preg_match('/Safari/i',$agente)){
 		$navegador = 'Safari';
-	}
-	elseif(preg_match('/Opera Mini/i',$agente)){
-    	$navegador = 'Opera Mini';
-	}
-	elseif(preg_match('/Opera/i',$agente)){
+	} elseif(preg_match('/Opera Mini/i',$agente)){
+    		$navegador = 'Opera Mini';
+	} elseif(preg_match('/Opera/i',$agente)){
 		$navegador = 'Opera';
-	}
-	elseif(preg_match('/Netscape/i',$agente)){
+	} elseif(preg_match('/Netscape/i',$agente)){
 		$navegador = 'Netscape';
+	} elseif(preg_match('/UCBrowser/i',$agente)){
+		$navegador = 'UC Browser';
 	} else {
-    	$navegador = "Desconocido";
-	}
+		$navegador = "Desconocido";
+	};
     return $navegador;
-}
+};
 
-echo("<b>IP:</b> ".getLocation('ip')."<br>");
+echo("<b>IP:</b> ".$_SERVER['REMOTE_ADDR']."<br>");
 echo("<b>Ubicaci&oacute;n</b>: ".getLocation('ciudad_pais')."<br>");
 echo("<b>Navegador:</b> ".getBrowser()."<br>");
-echo("<b>SO:</b> ".getSO()."<br>");
+echo("<b>SO:</b> ".getSO()." ".getArquitecture()."<br>");
 //echo($_SERVER['HTTP_USER_AGENT']);
 
 echo('</body></html>');
